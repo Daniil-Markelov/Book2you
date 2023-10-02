@@ -43,6 +43,8 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    //if user is admin redirect to admin dashboard else redirect to home
     protected function authenticated(Request $request, $user)
     {
         if ($user->hasRole('admin')) {
