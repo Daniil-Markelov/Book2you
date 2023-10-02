@@ -19,6 +19,7 @@ return new class extends Migration
             $table->timestamps();
             //foreign key constraint
             $table->foreign('genre_id')->references('id')->on('genres')->onDelete('cascade');
+            
         });
     }
 
