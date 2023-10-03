@@ -7,6 +7,29 @@
 
     <label for="description">Description:</label>
     <textarea name="description" id="description" required>{{ $box->description }}</textarea>
+    <div class="form-group">
+    <label for="genre_id">Genre</label>
+    <select name="genre_id" id="genre_id" class="form-control">
+        @foreach($genres as $genre)
+            <option value="{{ $genre->id }}" {{ $box->genre_id == $genre->id ? 'selected' : '' }}>
+                {{ $genre->name }}
+            </option>
+        @endforeach
+    </select>
+</div>
 
     <button type="submit">Update</button>
 </form>
+
+
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif

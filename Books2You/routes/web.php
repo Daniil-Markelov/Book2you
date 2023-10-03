@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\BoxController;
+use App\Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,17 +37,21 @@ require __DIR__.'/auth.php';
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard');
-Route::get('/admin/boxes/{id}/edit', [App\Http\Controllers\BoxController::class, 'edit'])->name('admin.boxes.edit');
-Route::put('/admin/boxes/{id}/update', [App\Http\Controllers\BoxController::class, 'update'])->name('admin.boxes.update');
+Route::middleware(['auth', AdminMiddleware::class])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('/boxes/{id}/edit', [BoxController::class, 'edit'])->name('boxes.edit');
+    Route::put('/boxes/{id}/update', [BoxController::class, 'update'])->name('boxes.update');
+});
 
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard');
-Route::get('/admin/boxes/{id}/edit', [App\Http\Controllers\BoxController::class, 'edit'])->name('admin.boxes.edit');
-Route::put('/admin/boxes/{id}/update', [App\Http\Controllers\BoxController::class, 'update'])->name('admin.boxes.update');
+Route::middleware(['auth', AdminMiddleware::class])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('/boxes/{id}/edit', [BoxController::class, 'edit'])->name('boxes.edit');
+    Route::put('/boxes/{id}/update', [BoxController::class, 'update'])->name('boxes.update');
+});
 
 
 
