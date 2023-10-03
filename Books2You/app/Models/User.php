@@ -10,6 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Role;
+use App\Models\Subscription;
 
 class User extends Authenticatable
 {
@@ -72,7 +73,9 @@ class User extends Authenticatable
 
     }
 
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class,'subscriber_id');
 
-
-    
+    }
 }
