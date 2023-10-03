@@ -11,6 +11,12 @@ class Box extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'price',
+        'description',
+        
+    ];
     public function genre()
          {
             //many boxes to one genre

@@ -1,6 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import '/Books2You/resources/sass/app.scss';
+@import '/Books2You/resources/sass/_variables.scss';
+
+
+footer {
+    margin-top: auto; /* Push the footer to the bottom of the container */
+}
+
 
 [x-cloak] {
     display: none;

@@ -26,8 +26,8 @@ class BoxController extends Controller
         // Update the box details
         $box->name = $request->input('name');
         $box->description = $request->input('description');
-         $genreId = $request->input('genre_id');
-    $genre = Genre::find($genreId);
+        $genreId = $request->input('genre_id');
+        $genre = Genre::find($genreId);
 
     if ($genre) {
         $box->genre_id = $genre->id;
@@ -39,6 +39,12 @@ class BoxController extends Controller
 
         // Redirect back or to a specific route
         return redirect()->back()->with('success', 'Box updated successfully');
+    }
+
+    public function index()
+    {
+        $boxes = Box::all();
+    return view('boxes.index', ['boxes' => $boxes]);
     }
 
 

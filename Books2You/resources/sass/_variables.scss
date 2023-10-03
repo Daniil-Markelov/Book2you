@@ -1,7 +1,16 @@
 // Body
-$body-bg: #f8fafc;
+$body-bg: #c0d0e0;
 
 // Typography
 $font-family-sans-serif: 'Nunito', sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
+
+.box-card {
+    background: linear-gradient(171deg, var(--bs-pink) 0%, var(--bs-indigo) 100%), var(--bs-purple);
+    
+    margin-top: 20px;
+    height: 95%;
+  }
+  
+  
