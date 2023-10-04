@@ -7,6 +7,7 @@ use App\Http\Controllers\BoxController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SubscriptionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +41,15 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/boxes', [BoxController::class, 'index'])->name('boxes.index');
+// Subscription confirmation page 
+Route::get('/subscribe/confirm/{box}', [SubscriptionController::class, 'confirm'])
+    ->name('subscribe.confirm')
+    ->middleware('auth');
 
+// Process subscription
+Route::post('/subscribe/confirm/{box}', [SubscriptionController::class, 'processSubscription'])
+    ->name('subscribe.process')
+    ->middleware('auth');
 
 Route::middleware(['auth', AdminMiddleware::class])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
