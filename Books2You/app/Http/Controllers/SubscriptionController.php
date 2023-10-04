@@ -27,4 +27,12 @@ public function processSubscription(Request $request, Box $box)
     return redirect()->route('dashboard')->with('success', 'Subscription confirmed successfully!');
 }
 
+public function destroy(Subscription $subscription)
+{
+    
+    $subscription->delete();
+
+    return redirect()->route('dashboard')->with('status', 'Subscription deleted successfully');
 }
+}
+

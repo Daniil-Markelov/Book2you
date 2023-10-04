@@ -25,4 +25,10 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function dashboard()
+{
+    $user = auth()->user(); // Get the authenticated user
+    return view('dashboard', compact('user'));
+}
 }

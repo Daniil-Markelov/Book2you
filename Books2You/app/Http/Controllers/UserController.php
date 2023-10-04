@@ -71,6 +71,8 @@ public function viewSubscriptions(User $user)
 
     return view('admin.users.subscriptions', ['user' => $user, 'subscriptions' => $subscriptions]);
 }
+
+
 }
 
 
