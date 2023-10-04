@@ -55,6 +55,8 @@ Route::post('/subscribe/confirm/{box}', [SubscriptionController::class, 'process
     ->name('subscribe.process')
     ->middleware('auth');
     Route::delete('/subscriptions/{subscription}', [SubscriptionController::class, 'destroy'])->name('subscriptions.delete');
+
+
 Route::middleware(['auth', AdminMiddleware::class])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::get('/boxes/{id}/edit', [BoxController::class, 'edit'])->name('boxes.edit');
@@ -63,8 +65,10 @@ Route::middleware(['auth', AdminMiddleware::class])->prefix('admin')->name('admi
     Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
-    Route::get('/users/{user}/subscriptions', [UserController::class, 'viewSubscriptions'])
-    ->name('users.subscriptions');
+    Route::get('/users/{user}/subscriptions', [UserController::class, 'viewSubscriptions'])->name('users.subscriptions');
+    Route::get('/boxes/create', [AdminController::class, 'createBox'])->name('boxes.create');
+    Route::post('/boxes', [AdminController::class, 'storeBox'])->name('boxes.store');
+    Route::delete('/boxes/{id}', [BoxController::class, 'destroy'])->name('boxes.destroy');
     
 });
 

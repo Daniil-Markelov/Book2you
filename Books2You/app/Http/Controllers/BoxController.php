@@ -47,5 +47,18 @@ class BoxController extends Controller
     return view('boxes.index', ['boxes' => $boxes]);
     }
 
+    public function destroy(Request $request, $id)
+{
+    
+    $box = Box::findOrFail($id);
+
+    
+    $box->delete();
+
+    
+    return redirect()->route('admin.dashboard')->with('success', 'Box deleted successfully');
+}
+
+
 
 }

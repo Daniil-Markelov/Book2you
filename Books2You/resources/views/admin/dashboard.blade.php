@@ -19,13 +19,26 @@
                 <div>
                     <a href="{{ route('admin.boxes.edit', $box) }}">{{ $box->name }}</a>
                 </div>
-                <!-- Add more content for Box {{ $box->name }} here -->
                 @endforeach
             </div>
         </div>
     </div>
     <div class="card">
-        <div class="card-header" id="section2">
+                <div class="card-header" id="section2">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse3">
+                            Create New Box
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapse3" class="collapse" data-parent="#myAccordion">
+                    <div class="card-body">
+                        <a href="{{ route('admin.boxes.create') }}" class="btn btn-success">Create New Box</a>
+                    </div>
+                </div>
+            </div>
+    <div class="card">
+        <div class="card-header" id="section3">
             <h2 class="mb-0">
                 <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse2">
                     View And Edit Users
